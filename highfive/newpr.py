@@ -358,7 +358,7 @@ def new_comment(payload, user, token):
 
 
 if __name__ == "__main__":
-    print("Content-Type: text/html;charset=utf-8\r\n\r\n"
+    print("Content-Type: text/html;charset=utf-8\r\n\r\n")
 
     cgitb.enable()
 
