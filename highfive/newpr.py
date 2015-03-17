@@ -101,12 +101,12 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
         else:
             raise e
 
-    if assignee:
-        #irc_name_of_reviewer = get_irc_nick(assignee)
-        #if irc_name_of_reviewer:
-        #    client = irc.IrcClient(target="#rust-bots")
-        #    client.send_then_quit("{}: ping to review issue https://www.github.com/{}/{}/pull/{} by {}."
-        #        .format(irc_name_of_reviewer, owner, repo, issue, author))
+    #if assignee:
+    #    irc_name_of_reviewer = get_irc_nick(assignee)
+    #    if irc_name_of_reviewer:
+    #        client = irc.IrcClient(target="#rust-bots")
+    #        client.send_then_quit("{}: ping to review issue https://www.github.com/{}/{}/pull/{} by {}."
+    #            .format(irc_name_of_reviewer, owner, repo, issue, author))
 
 
 def get_collaborators(owner, repo, user, token):
