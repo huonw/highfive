@@ -15,7 +15,7 @@ import time
 import socket
 import os
 
-from highfive import irc
+#from highfive import irc
 
 # Maximum per page is 100. Sorted by number of commits, so most of the time the
 # contributor will happen early,
