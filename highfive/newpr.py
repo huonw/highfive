@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import base64
 import urllib, urllib2
@@ -85,7 +85,7 @@ def post_comment(body, owner, repo, issue, user, token):
     global post_comment_url
     try:
         result = api_req("POST", post_comment_url % (owner, repo, issue), {"body": body}, user, token)['body']
-    except urllib2.HTTPError as e:
+    except urllib2.HTTPError, e:
         if e.code == 201:
             pass
         else:
@@ -95,7 +95,7 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
     global issue_url
     try:
         result = api_req("PATCH", issue_url % (owner, repo, issue), {"assignee": assignee}, user, token)['body']
-    except urllib2.HTTPError as e:
+    except urllib2.HTTPError, e:
         if e.code == 201:
             pass
         else:
@@ -112,7 +112,7 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
 def get_collaborators(owner, repo, user, token):
     try:
         result = api_req("GET", collabo_url % (owner, repo), None, user, token)['body']
-    except urllib2.HTTPError as e:
+    except urllib2.HTTPError, e:
         if e.code == 201:
             pass
         else:
@@ -358,7 +358,7 @@ def new_comment(payload, user, token):
 
 
 if __name__ == "__main__":
-    print("Content-Type: text/html;charset=utf-8\r\n\r\n")
+    print "Content-Type: text/html;charset=utf-8\r\n\r"
 
     cgitb.enable()
 
@@ -375,5 +375,5 @@ if __name__ == "__main__":
     elif payload["action"] == "created":
         new_comment(payload, user, token)
     else:
-        print(payload["action"])
+        print payload["action"]
         sys.exit(0)
