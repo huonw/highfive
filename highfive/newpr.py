@@ -25,13 +25,8 @@ collabo_url = "https://api.github.com/repos/%s/%s/collaborators"
 issue_url = "https://api.github.com/repos/%s/%s/issues/%s"
 
 welcome_with_reviewer = '@%s (or someone else)'
-welcome_without_reviewer = "@nick29581 or @huonw (NB. this repo may be misconfigured)"
-raw_welcome = """Thanks for the pull request, and welcome! The Rust team is excited to review your changes, and you should hear from %s soon.
-
-If any changes to this PR are deemed necessary, please add them as extra commits. This ensures that the reviewer can see what has changed since they last reviewed the code. The way Github handles out-of-date commits, this should also make it reasonably obvious what issues have or haven't been addressed. Large or tricky changes may require several passes of review and changes.
-
-Please see [CONTRIBUTING.md](https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md) for more information.
-"""
+welcome_without_reviewer = "@huonw (NB. this repo may be misconfigured)"
+raw_welcome = """Thanks for the pull request, and welcome! You should hear from %s soon."""
 
 
 def welcome_msg(reviewer):
@@ -107,11 +102,11 @@ def set_assignee(assignee, owner, repo, issue, user, token, author):
             raise e
 
     if assignee:
-        irc_name_of_reviewer = get_irc_nick(assignee)
-        if irc_name_of_reviewer:
-            client = irc.IrcClient(target="#rust-bots")
-            client.send_then_quit("{}: ping to review issue https://www.github.com/{}/{}/pull/{} by {}."
-                .format(irc_name_of_reviewer, owner, repo, issue, author))
+        #irc_name_of_reviewer = get_irc_nick(assignee)
+        #if irc_name_of_reviewer:
+        #    client = irc.IrcClient(target="#rust-bots")
+        #    client.send_then_quit("{}: ping to review issue https://www.github.com/{}/{}/pull/{} by {}."
+        #        .format(irc_name_of_reviewer, owner, repo, issue, author))
 
 
 def get_collaborators(owner, repo, user, token):
@@ -180,8 +175,9 @@ def find_reviewer(commit_msg):
 
 # Choose a reviewer for the PR
 def choose_reviewer(repo, owner, diff, exclude):
-    if not (owner == 'rust-lang' or (owner == 'nick29581' and repo == 'highfive')):
+    if owner != 'huonw':
         return 'test_user_selection_ignore_this'
+
 
     # Get JSON data on reviewers.
     reviewers = _load_json_file(repo + '.json')
